@@ -10,8 +10,7 @@ from nltk.stem import WordNetLemmatizer
 from numpy.lib.npyio import load
 from tensorflow.keras.models import load_model
 from tensorflow.python.keras import models
-import arabic_reshaper
-from bidi.algorithm import get_display
+
 
 lemmatizer = WordNetLemmatizer()
 
@@ -56,15 +55,10 @@ def get_response(intents_list, intents_json):
             break
     return result
 
-reshaped_print = arabic_reshaper.reshape(("ابدأ بالكلام"))
-bidi_print = get_display(reshaped_print)
-print(bidi_print)
+print("ابدأ بالكتابة")
 
 while True:
     message = input("")
     ints = predict_class(message)
     res = get_response(ints, intents)
-
-    reshaped_res = arabic_reshaper.reshape(res)
-    bidi_res = get_display(reshaped_res)
-    print(bidi_res)
+    print(res)

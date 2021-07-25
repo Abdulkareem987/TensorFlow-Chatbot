@@ -11,8 +11,6 @@ from tensorflow.keras import optimizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.optimizers import SGD
-import arabic_reshaper
-from bidi.algorithm import get_display
 from tensorflow.python.ops.numpy_ops import np_arrays
 
 
@@ -34,14 +32,9 @@ for intent in intents ['intents']:
         if intent['tag'] not in classes:
             classes.append(intent['tag'])
 
-# these 2 lines are to correctly spell arabic words
-reshaped_documents = arabic_reshaper.reshape(str(documents))
-bidi_documents = get_display(reshaped_documents)
 
 words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
 words = sorted (set(words))
-reshaped_words = arabic_reshaper.reshape(str(words))
-bidi_words = get_display(reshaped_words)
 
 classes = sorted(set(classes))
 
